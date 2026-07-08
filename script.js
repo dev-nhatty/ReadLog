@@ -1,4 +1,4 @@
-let books = [ 
+let books = JSON.parse(localStorage.getItem("books")) || [ 
     {
     id: 1,
     title: "The Midnight Library",
@@ -44,6 +44,8 @@ function renderBooks(bookArray = books) {
             <p>Genre: ${book.genre}</p>
             <p>Rating: ${book.rating}</p>
             <p>Status: ${book.read ? "Read" : "Unread"}</p>
+            <button class= "toggle-btn" data-id= "${book.id}">Mark as ${!(book.read) ? "Read" : "Unread"}</button>
+            <button class= "delete-btn" data-id= "${book.id}">Delete</button>
         </div>
         `;
     };
@@ -54,7 +56,7 @@ renderBooks();
 
 const bookForm = document.getElementById("book-form");
 
-addEventListener("submit", function(event) {
+bookForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const newBook = {
@@ -62,25 +64,59 @@ addEventListener("submit", function(event) {
         title: document.getElementById("title-input").value,
         genre: document.getElementById("genre-input").value,
         author: document.getElementById("author-input").value,
-        rating: document.getElementById("rating-input").value,
+        rating: Number(document.getElementById("rating-input").value),
         read: false
     };
 
     books.push(newBook);
-    renderBooks();
+    saveAndUpdate();
     bookForm.reset();
 });
 
 const searchInput = document.getElementById("search-input");
 
-searchInput.addEventListener("input", function() {
+searchInput.addEventListener("input", updateView);
+
+const sortSelect = document.getElementById("sort-select");
+
+sortSelect.addEventListener("change", updateView);
+
+bookListDiv.addEventListener("click", function(event) {
+    const id = Number(event.target.dataset.id);
+
+    if (event.target.classList.contains("toggle-btn")){
+        const book = books.find(function(book){
+            return book.id === id;
+        });
+        book.read = !book.read;
+        saveAndUpdate();
+    };
+    if (event.target.classList.contains("delete-btn")){
+        const bookIndex = books.findIndex(function(b) {return b.id === id});
+        books.splice(bookIndex, 1);
+        saveAndUpdate();
+    }
+});
+
+function saveAndUpdate() {
+    localStorage.setItem("books", JSON.stringify(books));
+    updateView();
+};
+
+function updateView() {
     const query = searchInput.value.toLowerCase();
 
-    let filteredBooks = [];
-    for (const book of books) {
-        if (book.author.toLowerCase().includes(query) || book.title.toLowerCase().includes(query)){
-            filteredBooks.push(book);
-        }
+    let result = books.filter(function(book) {
+        return book.author.toLocaleLowerCase().includes(query) || book.title.toLocaleLowerCase().includes(query);
+    })
+
+    const sortValue = document.getElementById("sort-select").value;
+    if (sortValue === "rating-desc") {
+        result.sort(function(a, b){return b.rating - a.rating;})
+    } else if (sortValue === "title-asc") {
+        result.sort(function(a, b){return a.title.localeCompare(b.title)});
     }
-    renderBooks(filteredBooks);
-})
+
+    renderBooks(result);
+};
+
