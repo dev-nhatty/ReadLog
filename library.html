@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages/library.css">
+    <title>ReadLog</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <img src="assets/Logo.png" alt="ReadLog logo" class="nav-logo-mark">
+        </a>   
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="library.html" class="active">Library</a>
+            <a href="discover.html">Discover</a>
+        </div>
+        <!-- <div class="nav-tools">
+            <label class="nav-search-field">
+                <span>Search</span>
+                <input type="search" placeholder="Search..." aria-label="Search">
+            </label>
+        </div> -->
+    </nav>
+
+    <main>
+        <section class="library-hero">
+            <h1>Your Digital Library</h1>
+            <p>Manage your collection and track your reading journey.</p>
+        </section>
+
+        <section class="library-top">
+            <div id="book-form-card">
+                <h3><span class="heading-icon">+</span> Add New Book</h3>
+                <form id="book-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>TITLE</label>
+                            <input type="text" id="title-input" placeholder="e.g. The Great Gatsby" required>
+                        </div>
+                        <div class="form-group">
+                            <label>AUTHOR</label>
+                            <input type="text" id="author-input" placeholder="e.g. F. Scott Fitzgerald" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>GENRE</label>
+                            <select id="genre-input" required>
+                                <option value="">Select genre</option>
+                                <option>Fiction</option>
+                                <option>Non-Fiction</option>
+                                <option>Fantasy</option>
+                                <option>Science Fiction</option>
+                                <option>Mystery</option>
+                                <option>Memoir</option>
+                                <option>Philosophy</option>
+                                <option>Adventure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>RATING</label>
+                            <div class="star-picker" id="star-picker">
+                                <span data-value="1">&#9733;</span>
+                                <span data-value="2">&#9733;</span>
+                                <span data-value="3">&#9733;</span>
+                                <span data-value="4">&#9733;</span>
+                                <span data-value="5">&#9733;</span>
+                            </div>
+                            <input type="hidden" id="rating-input" value="0" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">+ Add Book</button>
+                </form>
+            </div>
+
+            <aside class="library-stats">
+                <div class="library-stat-card">
+                    <div>
+                        <label>Total Books</label>
+                        <strong id="library-total">0</strong>
+                    </div>
+                    <span class="stat-icon">Book</span>
+                </div>
+                <div class="library-stat-card accent">
+                    <div>
+                        <label>Reading Now</label>
+                        <strong id="library-reading">0</strong>
+                    </div>
+                    <span class="stat-icon">Book</span>
+                </div>
+            </aside>
+        </section>
+
+        <div class="filters-row">
+            <div class="search-bar">
+                <span class="search-icon">Search</span>
+                <input type="text" id="search-input" placeholder="Filter by title or author...">
+            </div>
+
+            <div class="filter-controls">
+                <select id="genre-filter">
+                    <option value="all">All Genres</option>
+                </select>
+
+                <select id="status-filter">
+                    <option value="all" selected>Reading Status</option>
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                </select>
+
+                <select id="sort-select">
+                    <option value="none" selected>Sort By: Newest</option>
+                    <option value="rating-desc">Rating (High to Low)</option>
+                    <option value="title-asc">Title (A-Z)</option>
+                </select>
+
+                <label class="favorites-toggle">
+                    <input type="checkbox" id="favorites-filter"> Favorites
+                </label>
+            </div>
+        </div>
+
+        <div id="book-list"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img src="assets/Logo.png" alt="ReadLog logo" class="footer-logo-mark">
+                <strong>ReadLog</strong>
+            </div>
+            <p>Built while learning to code.</p>
+        </div>
+
+        <p>&copy; 2026 ReadLog. Built by Natnael Tesfaye.</p>
+
+        <div class="footer-links">
+            <a href="https://github.com/dev-nhatty" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="www.linkedin.com/in/natnael-tesfaye-95b007375" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/dev-nhatty/readlog" target="_blank" rel="noopener noreferrer">View Source</a>
+        </div>
+    </footer>
+
+    <script src="js/domain/Book.js"></script>
+    <script src="js/domain/Library.js"></script>
+    <script src="js/infrastructure/StorageService.js"></script>
+    <script src="js/ui/renderBookCard.js"></script>
+    <script src="js/ui/LibraryUI.js"></script>
+    <script src="js/controllers/LibraryController.js"></script>
+    <script>
+        new LibraryController();
+    </script>
+</body>
+</html>

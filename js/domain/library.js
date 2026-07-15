@@ -31,8 +31,8 @@ class Library {
     }; return result;
   }
 
-  sortBy(criteria) {
-    let sortedCopy = [...this.books];
+  sortBy(criteria, bookArray = this.books) {
+    let sortedCopy = [...bookArray];
     if (criteria === "rating-desc") {
         sortedCopy.sort(function(a, b){return b.rating - a.rating})
     } else if (criteria === "title-asc") {

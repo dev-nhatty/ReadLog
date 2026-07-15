@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages/discover.css">
+    <title>ReadLog</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+        <img src="assets/Logo.png" alt="ReadLog logo" class="nav-logo-mark">
+        </a>   
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="library.html">Library</a>
+            <a href="discover.html" class="active">Discover</a>
+        </div>
+        
+    </nav>
+
+    <main>
+    <section class="discover-hero">
+        <h1>Search thousands of books...</h1>
+        <div class="discover-search">
+            <span class="search-icon">Search</span>
+            <input type="text" id="google-search-input" placeholder="Title, author, or genre...">
+            <button id="google-search-btn" type="button" class="btn-primary">Explore</button>
+        </div>
+        <div class="trending-tags">
+            <span>Quick Search:</span>
+            <button class="trending-tag" data-query="Non-Fiction">Non-Fiction</button>
+            <button class="trending-tag" data-query="Philosophy">Philosophy</button>
+            <button class="trending-tag" data-query="Science Fiction">Sci-Fi</button>
+        </div>
+    </section>
+
+    <div id="search-results"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img src="assets/Logo.png" alt="ReadLog logo" class="footer-logo-mark">
+                <strong>ReadLog</strong>
+            </div>
+            <p>Built while learning to code.</p>
+        </div>
+
+        <p>&copy; 2026 ReadLog. Built by Natnael Tesfaye.</p>
+
+        <div class="footer-links">
+            <a href="https://github.com/dev-nhatty" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="www.linkedin.com/in/natnael-tesfaye-95b007375" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/dev-nhatty/readlog" target="_blank" rel="noopener noreferrer">View Source</a>
+        </div>
+    </footer>
+
+    <script src="js/domain/Book.js"></script>
+    <script src="js/domain/Library.js"></script>
+    <script src="js/infrastructure/StorageService.js"></script>
+    <script src="js/infrastructure/GutendexService.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/infrastructure/GoogleBooksService.js"></script>
+    <script src="js/UI/DetailsUI.js"></script>
+    <script src="js/Controllers/BookDetailsController.js"></script>
+    <script src="js/ui/renderBookCard.js"></script>
+    <script src="js/ui/DiscoverUI.js"></script>
+    <script src="js/controllers/DiscoverController.js"></script>
+    <script>
+  new DiscoverController();
+</script>
+</body>
+</html>

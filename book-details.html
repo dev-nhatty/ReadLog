@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages/details.css">
+    <title>ReadLog</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <img src="assets/Logo.png" alt="ReadLog logo" class="nav-logo-mark">
+        </a>   
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="library.html" class="active">Library</a>
+            <a href="discover.html">Discover</a>
+        </div>
+        <div class="nav-tools" aria-hidden="true">
+            <span class="nav-search">Search</span>
+        </div>
+    </nav>
+
+    <main>
+    <div id="details-container" class="details-layout"></div>
+
+    <section class="content-section details-recommendations">
+        <div class="section-heading">
+            <div>
+                <h2>Recommended for You</h2>
+                <p>Based on your reading style</p>
+            </div>
+        </div>
+        <div id="recommended-books" class="horizontal-scroll"></div>
+    </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <a href="index.html"><img src="assets/Logo.png" alt="ReadLog logo" class="footer-logo-mark">
+                <strong>ReadLog</strong> </a>
+            </div>
+            <p>Built while learning to code.</p>
+        </div>
+
+        <p>&copy; 2026 ReadLog. Built by Natnael Tesfaye.</p>
+
+        <div class="footer-links">
+            <a href="https://github.com/dev-nhatty" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="www.linkedin.com/in/natnael-tesfaye-95b007375" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/dev-nhatty/readlog" target="_blank" rel="noopener noreferrer">View Source</a>
+        </div>
+    </footer>
+
+    <script src="js/domain/Book.js"></script>
+    <script src="js/domain/Library.js"></script>
+    <script src="js/infrastructure/StorageService.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/infrastructure/GoogleBooksService.js"></script>
+    <script src="js/ui/renderBookCard.js"></script>
+    <script src="js/ui/DetailsUI.js"></script>
+    <script src="js/controllers/BookDetailsController.js"></script>
+    <script>
+    new BookDetailsController();
+    </script>
+</body>
+</html>

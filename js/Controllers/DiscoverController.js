@@ -23,7 +23,7 @@ class DiscoverController {
     document.querySelectorAll(".trending-tag").forEach((tag) => {
       tag.addEventListener("click", () => {
         this.searchInput.value = tag.dataset.query;
-        this.handleSearch();
+        this.handleTopicSearch(tag.dataset.query);
       });
     });
   }
@@ -52,6 +52,36 @@ class DiscoverController {
       return;
     }
 
+    this.ui.render(this.lastResults);
+  }
+
+  bindEvents() {
+    this.searchBtn.addEventListener("click", () => this.handleSearch());
+    this.ui.container.addEventListener("click", (event) => this.handleResultClick(event));
+
+    document.querySelectorAll(".trending-tag").forEach((tag) => {
+      tag.addEventListener("click", () => {
+        this.searchInput.value = tag.dataset.query;
+        this.handleTopicSearch(tag.dataset.query);
+      });
+    });
+  }
+
+async handleTopicSearch(topic) {
+    this.ui.showLoading();
+
+    const [gutendexResult, googleResult] = await Promise.allSettled([
+      this.gutendex.searchByTopic(topic),
+      this.googleBooks.searchBySubject(topic)
+    ]);
+
+    const gutendexBooks = gutendexResult.status === "fulfilled" ? gutendexResult.value : [];
+    const googleBooks = googleResult.status === "fulfilled" ? googleResult.value : [];
+
+    if (gutendexResult.status === "rejected") console.error("Gutendex failed:", gutendexResult.reason);
+    if (googleResult.status === "rejected") console.error("Google Books failed:", googleResult.reason);
+
+    this.lastResults = [...gutendexBooks, ...googleBooks];
     this.ui.render(this.lastResults);
   }
 
