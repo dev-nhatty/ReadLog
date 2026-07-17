@@ -1,0 +1,53 @@
+.library-hero { max-width: 1280px; margin: 0 auto; padding: 2.2rem 3rem 2.8rem; }
+.library-hero h1 { color: var(--green-dark); font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1; }
+.library-hero p { margin-top: 1rem; color: var(--muted); font-size: 1.35rem; }
+
+.library-top {
+  max-width: 1280px; margin: 0 auto; padding: 0 3rem 3.3rem; display: grid;
+  grid-template-columns: minmax(0, 2.05fr) minmax(280px, 1fr); gap: 1.6rem; align-items: start;
+}
+
+#book-form-card { min-height: 320px; padding: 2rem; background: var(--white); border: 1px solid #e9e8df; border-radius: 12px; box-shadow: var(--shadow); }
+#book-form-card h3 { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.55rem; color: var(--ink); font-size: 1.7rem; }
+#book-form { display: block; margin: 0; padding: 0; background: transparent; box-shadow: none; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; margin-bottom: 1.45rem; }
+.form-group label { display: block; margin-bottom: 0.55rem; color: #586057; font-size: 0.77rem; font-weight: 900; letter-spacing: 0.05em; }
+.form-group input, .form-group select { width: 100%; min-height: 50px; padding: 0.7rem 1rem; color: #333b34; background: var(--paper); border: 2px solid #d7d8cf; border-radius: 8px; outline: 0; }
+.form-group input:focus, .form-group select:focus, .search-bar:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(47, 107, 49, 0.12); }
+
+.star-picker { display: flex; gap: 0.55rem; align-items: center; min-height: 50px; }
+.star-picker span { color: #b8beb1; cursor: pointer; font-size: 2.2rem; line-height: 1; }
+.star-picker span.filled { color: var(--gold-dark); }
+#book-form button[type="submit"] { display: block; min-width: 185px; margin-left: auto; }
+
+.library-stats { display: grid; gap: 1.55rem; }
+.library-stat-card { display: flex; justify-content: space-between; min-height: 116px; padding: 1.7rem; background: var(--paper); border: 1px solid #e1e0d8; border-radius: 12px; }
+.library-stat-card label { display: block; margin-bottom: 0.25rem; color: #63695f; font-size: 0.77rem; font-weight: 850; letter-spacing: 0.04em; text-transform: uppercase; }
+.library-stat-card strong { display: block; color: var(--green-dark); font-size: 2.1rem; line-height: 1; }
+.library-stat-card.accent { background: var(--gold); }
+.library-stat-card.accent strong, .library-stat-card.accent label { color: var(--green-dark); }
+.stat-icon { align-self: center; color: rgba(18, 79, 24, 0.28); font-weight: 900; }
+
+.filters-row { max-width: 1280px; margin: 0 auto 2rem; padding: 0 3rem; display: flex; justify-content: space-between; gap: 1.5rem; align-items: center; }
+.search-bar { position: relative; flex: 1; max-width: 420px; min-width: 260px; display: flex; align-items: center; gap: 0.8rem; min-height: 52px; padding: 0 1rem; background: var(--paper); border: 2px solid #d7d8cf; border-radius: 10px; }
+.search-bar input { width: 100%; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 1rem; }
+.filter-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.65rem; }
+.filter-controls select, .favorites-toggle { min-height: 46px; padding: 0 1rem; color: #333a33; background: var(--paper); border: 2px solid #d7d8cf; border-radius: 8px; font-weight: 750; }
+.favorites-toggle { display: flex; align-items: center; gap: 0.45rem; }
+
+#book-list { max-width: 1280px; margin: 0 auto; padding: 0 3rem 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1050px) {
+  .library-top { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .library-hero, .library-top, #book-list, .filters-row { padding-left: 1rem; padding-right: 1rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .library-top { padding-bottom: 2rem; }
+  .filters-row { flex-direction: column; align-items: stretch; }
+  .search-bar { max-width: none; }
+  .filter-controls { justify-content: stretch; }
+  .filter-controls select, .favorites-toggle { flex: 1 1 150px; }
+}

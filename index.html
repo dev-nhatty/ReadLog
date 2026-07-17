@@ -2,35 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Book Tracker</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReadLog</title>
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/home.css">
 </head>
 <body>
-  <h1>ReadLog</h1>
-  <form id="book-form">
-    <input type="text" id="title-input" placeholder="Title" required>
-    <input type="text" id="author-input" placeholder="Author" required>
-    <input type="text" id="genre-input" placeholder="Genre" required>
-    <input type="number" id="rating-input" placeholder="Rating" min="0" max="5" step="0.1" required>
-    <button type="submit">Add Book</button>
-  </form>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo-link">
+      <img src="assets/Logo.png" alt="ReadLog logo" class="nav-logo-mark">
+    </a>    
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="library.html">Library</a>
+      <a href="discover.html">Discover</a>
+    </div>
+  </nav>
 
-  <input type="text" id="search-input" placeholder="Search by title or author">
+  <main>
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1 class="hero-title">ReadLog</h1>
+        <p class="hero-subtitle">Your personal digital bookshelf for the modern bibliophile. Organize, track, and discover your next great adventure in our serene sanctuary.</p>
+        <div class="hero-buttons">
+          <a href="library.html"><button class="btn-primary">Browse Library</button></a>
+          <a href="discover.html"><button class="btn-secondary">Discover Books</button></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&auto=format&fit=crop" alt="Warm library reading room">
+      </div>
+    </section>
 
-  <div id="google-search">
-  <input type="text" id="google-search-input" placeholder="Search Google Books...">
-  <button id="google-search-btn" type="button">Search</button>
-  <div id="google-results"></div>
-</div>
+    <section class="stats-cards" aria-label="Reading statistics">
+      <div class="stat-card"><label>Total Books</label><span id="stat-total"></span></div>
+      <div class="stat-card"><label>Books Read</label><span id="stat-read"></span></div>
+      <div class="stat-card"><label>Books Unread</label><span id="stat-unread"></span></div>
+      <div class="stat-card"><label>Avg Rating</label><span id="stat-rating"></span></div>
+    </section>
 
-  <select id="sort-select">
-  <option value="none">Sort by...</option>
-  <option value="rating-desc">Rating (High to Low)</option>
-  <option value="title-asc">Title (A-Z)</option>
-</select>
+    <section class="progress-container">
+      <div class="progress-header">
+        <div>
+          <h2>Annual Reading Goal</h2>
+          <p>This Year's Challenge</p>
+        </div>
+        <strong><span id="goal-read">0</span> / <span id="progress-total">0</span> <small>books</small></strong>
+      </div>
+      <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+      <p id="progress-text"></p>
+    </section>
 
-  <div id="book-list"></div>
+    <section class="content-section">
+      <div class="section-heading">
+        <h2>Recently Added</h2>
+        <a href="library.html">View All</a>
+      </div>
+      <div id="recent-books" class="horizontal-scroll"></div>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="content-section favorites-section">
+      <div class="section-heading">
+        <h2>Your Favorites <span>Heart</span></h2>
+      </div>
+      <div id="favorite-books" class="horizontal-scroll"></div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready for your next chapter?</h2>
+      <p>Keep your library growing. Add your latest find or discover something new to dive into.</p>
+      <div class="hero-buttons">
+        <a href="library.html"><button class="btn-light">+ Add New Book</button></a>
+        <a href="discover.html"><button class="btn-ghost">Discover More</button></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img src="assets/Logo.png" alt="ReadLog logo" class="footer-logo-mark">
+                <strong>ReadLog</strong>
+            </div>
+            <p>Built while learning to code.</p>
+        </div>
+
+        <p>&copy; 2026 ReadLog. Built by Natnael Tesfaye.</p>
+
+        <div class="footer-links">
+            <a href="https://github.com/dev-nhatty" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="www.linkedin.com/in/natnael-tesfaye-95b007375" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/dev-nhatty/readlog" target="_blank" rel="noopener noreferrer">View Source</a>
+        </div>
+    </footer>
+
+  <script src="js/domain/Book.js"></script>
+  <script src="js/domain/Library.js"></script>
+  <script src="js/infrastructure/StorageService.js"></script>
+  <script src="js/ui/renderBookCard.js"></script>
+  <script src="js/ui/HomeUI.js"></script>
+  <script src="js/controllers/HomeController.js"></script>
+  <script>new HomeController();</script>
 </body>
 </html>

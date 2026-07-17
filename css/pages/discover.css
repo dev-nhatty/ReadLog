@@ -1,0 +1,31 @@
+.discover-hero { max-width: 920px; margin: 0 auto; padding: 4rem 2rem 4.5rem; text-align: center; }
+.discover-hero h1 { margin-bottom: 2rem; color: var(--ink); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+
+.discover-search { display: flex; align-items: center; gap: 1rem; min-height: 70px; padding: 0.55rem; background: var(--paper); border: 2px solid #d6d7ce; border-radius: 999px; box-shadow: var(--soft-shadow); }
+.discover-search:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px rgba(47, 107, 49, 0.12); }
+.discover-search .search-icon { margin-left: 1.3rem; }
+.discover-search input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; font-size: 1.14rem; }
+.discover-search button { min-width: 130px; }
+
+.trending-tags { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.6rem; color: var(--muted); font-size: 0.9rem; font-weight: 800; }
+.trending-tag { padding: 0.35rem 0.85rem; color: var(--green-dark); background: var(--green-soft); border-radius: 999px; font-size: 0.86rem; }
+
+#search-results { max-width: none; display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); gap: 2rem; padding: 0 3rem 5rem; overflow: hidden; }
+#search-results .book-card { border-radius: 10px; }
+#search-results .book-cover { height: min(42vh, 600px); min-height: 300px; }
+#search-results .book-actions { margin-top: auto; }
+#search-results .btn-add { width: 100%; min-height: 58px; border-radius: 7px; font-size: 1.03rem; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1050px) {
+  #search-results { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+  #search-results .book-cover { height: 420px; }
+}
+@media (max-width: 720px) {
+  .discover-hero { padding: 3rem 1rem; }
+  .discover-search { align-items: stretch; border-radius: 18px; flex-direction: column; padding: 1rem; }
+  .discover-search .search-icon { display: none; }
+  .discover-search input { width: 100%; min-height: 46px; padding: 0 0.5rem; }
+  #search-results { grid-template-columns: 1fr; }
+  #search-results .book-cover { height: 380px; }
+}
